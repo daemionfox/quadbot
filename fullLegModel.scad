@@ -6,7 +6,8 @@ use <./bearingMount.scad>
 use <./servoBracket.scad>
 use <./servoClamp.scad>
 use <./hipConnector.scad>
-use <./thigh-main.scad>
+use <./legThigh.scad>
+use <./legCalf.scad>
 use <./legConnector.scad>
 
 explode = .25;
@@ -36,6 +37,8 @@ module hip(){
             }
         }
         
+        color(primary){
+
         translate([31,0,11]){
             rotate([270,legRotate,90]){
                 partLeg(80);
@@ -48,13 +51,24 @@ module hip(){
 
             }
         }
-        
-        
-        translate([59,0,11]){
-            rotate([90,180-legRotate,90]){
-                partLeg(200,8);
+    }
+    
+        color(primary){
+            translate([59,0,11]){
+                rotate([90,180-legRotate,90]){
+                    partLeg(200,8);
+                }
             }
         }
+        
+        color(secondary){
+            translate([51.75,-82,166.5]){
+                rotate([270,legRotate-176,90]){
+                    legCalf(120,240,8,true);
+                }
+            }
+        }
+        
     }
 }
 

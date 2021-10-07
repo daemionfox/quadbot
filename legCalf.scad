@@ -1,7 +1,7 @@
 use <./commonparts.scad>
 use <../MCAD/bearing.scad>
 
-legCalf(120,240,8,false);
+legCalf(120,240,8,true);
 
 module legCalf(calfLength, footLength, thick, showBearing=false)
 {
@@ -12,13 +12,17 @@ module legCalf(calfLength, footLength, thick, showBearing=false)
             cylinder(d=22.25,h=thick+12, center=true);
         }
     }
+    if (showBearing){
+        bearing([0,0,0],[0,0,0],608);
+        bearing([50,0,0],[0,0,0],608);
+    }
 }
 
 module hookedLeg(calfLength, footLength, width, thick)
 {
     legBase(calfLength,width,thick);
     translate([calfLength-32,0,0]){
-        rotate([0,0,240]){
+        rotate([0,0,150]){
             difference(){
                 legBase(footLength,width,thick);
                 for(i = [0:10:30]){
